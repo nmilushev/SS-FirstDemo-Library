@@ -8,8 +8,8 @@ namespace Demo_Library.Models.BookModels
 
         private int durationInMinutes;
 
-        public AudioBook(string title, Author author, int yearPublished, int durationInMinutes) 
-            : base(title, author, yearPublished, BookType.Audio)
+        public AudioBook(string title, Author author, int yearPublished, int durationInMinutes, BookGenre bookGenre) 
+            : base(title, author, yearPublished, "Audio", bookGenre)
         {
             this.DurationInMinutes = durationInMinutes;
         }
@@ -20,7 +20,7 @@ namespace Demo_Library.Models.BookModels
             {
                 return durationInMinutes;
             }
-            set
+            private set
             {
                 if (value < MinDurationInMinutes)
                 {

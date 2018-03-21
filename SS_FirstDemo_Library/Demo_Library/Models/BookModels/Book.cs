@@ -9,11 +9,12 @@ namespace Demo_Library.Models.BookModels
 
         private string title;
 
-        protected Book(string title, Author author, int yearPublished, BookType bookType)
+        protected Book(string title, Author author, int yearPublished, string bookType, BookGenre bookGenre)
         {
             this.Title = title;
             this.Author = author;
             this.YearPublished = yearPublished;
+            this.BookGenre = bookGenre;
             this.BookType = bookType;
         }
 
@@ -34,7 +35,8 @@ namespace Demo_Library.Models.BookModels
                 title = value;
             }
         }
-        public BookType BookType { get; private set; }
+        public string BookType { get; private set; }
+        public BookGenre BookGenre { get; private set; }
 
         public override string ToString()
         {

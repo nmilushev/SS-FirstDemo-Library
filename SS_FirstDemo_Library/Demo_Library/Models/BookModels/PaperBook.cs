@@ -8,8 +8,8 @@ namespace Demo_Library.Models.BookModels
 
         private int numberOfPages;
 
-        public PaperBook(string title, Author author, int yearPublished, int numberOfPages)
-            : base(title, author, yearPublished, BookType.Paper)
+        public PaperBook(string title, Author author, int yearPublished, int numberOfPages, BookGenre bookGenre)
+            : base(title, author, yearPublished, "Paper", bookGenre)
         {
             this.NumberOfPages = numberOfPages;
         }
@@ -20,7 +20,7 @@ namespace Demo_Library.Models.BookModels
             {
                 return numberOfPages;
             }
-            set
+            private set
             {
                 if (value < MinPagesNumber)
                 {

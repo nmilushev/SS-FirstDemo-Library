@@ -43,11 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BussinessLogic\LibraryManagement.cs" />
+    <Compile Include="Factrory\AuthorFactory.cs" />
     <Compile Include="Factrory\BookFactory.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\BookModels\AudioBook.cs" />
     <Compile Include="Models\BookModels\Book.cs" />
-    <Compile Include="Models\BookModels\BookType.cs" />
+    <Compile Include="Models\BookModels\BookGenre.cs" />
     <Compile Include="Models\BookModels\PaperBook.cs" />
     <Compile Include="OutputMessages.cs" />
     <Compile Include="StartUp.cs" />

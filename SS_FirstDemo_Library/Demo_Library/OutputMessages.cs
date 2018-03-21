@@ -7,5 +7,6 @@
         public static string InvalidAudioBookLength = "Invalid duration in minutes, must be more than {0}";
         public static string InvalidPaperBookLength = "Invalid number of pages, must be more than {0}";
         public static string InvalidTypeOfBook = "{0} is invalid type of book, possible types are {1} and {2}";
+        public static string InvalidGenreOfBook = "{0} is invalid book genre, possible types are {1}, {2} and {3}";
     }
 }

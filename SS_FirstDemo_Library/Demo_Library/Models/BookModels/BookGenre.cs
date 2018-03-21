@@ -1,7 +1,7 @@
 ﻿namespace Demo_Library.Models.BookModels
 {
-    public enum BookType
+    public enum BookGenre
     {
-        Paper, Audio
+        Drama, Romance, Horror
     }
 }
