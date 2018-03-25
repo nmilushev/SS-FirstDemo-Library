@@ -2,9 +2,9 @@
 
 namespace Demo_Library.Models.BookModels
 {
-    public abstract class Book //base class for both types of books
+    public abstract class Book
     {
-        private const int TitleMaxLength = 30;
+        private const int TitleMaxLength = 35;
         private const int TitleMinLength = 1;
 
         private string title;
@@ -42,7 +42,8 @@ namespace Demo_Library.Models.BookModels
         {
             return $"Title: {this.Title}\r\n" +
                 $"Published: {this.YearPublished}\r\n" +
-                $"Author: {this.Author.Name}";
+                $"Author: {this.Author.Name}, born: {this.Author.DateOfBirth:dd-mm-yyyy}\r\n" +
+                $"----------------------------------------";
         }
     }
 }

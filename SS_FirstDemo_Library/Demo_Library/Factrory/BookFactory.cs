@@ -14,9 +14,9 @@ namespace Demo_Library.Factrory
             if (!validGenre)
             {
                 throw new ArgumentException(string.Format(OutputMessages.InvalidGenreOfBook, bookGenre,
-                    BookGenre.Drama.ToString(), BookGenre.Horror.ToString(), BookGenre.Romance.ToString())); // adding new genre schrews this one 
+                    BookGenre.Drama.ToString(), BookGenre.Horror.ToString(), BookGenre.Romance.ToString())); // adding new genre screws this one 
             }
-
+    
             switch (bookType)
             {
                 case "Audio":
