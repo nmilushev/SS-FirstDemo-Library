@@ -4,6 +4,7 @@
     {
         public static string InvalidName = "Invalid Author name, must be between {0} and {1} symbols";
         public static string InvalidTitle = "Invalid Title, must be between {0} and {1} symbols";
+        public static string InvalidISBN = "Invalid ISBN, mist be exactly {0} digits";
         public static string InvalidAudioBookLength = "Invalid duration in minutes, must be more than {0}";
         public static string InvalidPaperBookLength = "Invalid number of pages, must be more than {0}";
         public static string InvalidTypeOfBook = "{0} is invalid type of book, possible types are {1} and {2}";
@@ -15,9 +16,10 @@
                                                      "Would you like to\r\n" +
                                                      "  sort\r\n" +
                                                      "  search\r\n" +
-                                                     "  add book\r\n" +
-                                                     "  remove book\r\n" +
-                                                     "  print books\r\n" +
+                                                     "  add\r\n" +
+                                                     "  remove\r\n" +
+                                                     "  print N\r\n" +
+                                                     "  print all\r\n" +
                                                      "  end\r\n" +
                                                      "****************************";
         public static string BookInputFormat = "Add book in format:\r\n" +
@@ -28,7 +30,13 @@
             " 1. Bubble sort / year published ascending\r\n" +
             " 2. Bubble sort / year published descending\r\n" +
             " 3. Bubble sort / author name ascending\r\n" +
-            " 4. Bubble sort / author name descending";
+            " 4. Bubble sort / author name descending\r\n" +
+            " 5. Bubble sort / ISBN ascending\r\n" +
+            " 6. Bubble sort / ISBN descending\r\n" +
+            " 7. Merge sort / year published ascending\r\n" +
+            " 8. Merge sort / year published descending\r\n" +
+            " 9. Merge sort / ISBN ascending\r\n" +
+            " 10. Merge sort / ISBN descending";
         //TO DO : add more functionality with rest sorting algorithms
         public static string BooksSorted = "Sorting done! Time elapsed: {0}m {1}s {2}ms";
         public static string SearchDone = "Searching done! Time elapsed: {0}m {1}s {2}ms";

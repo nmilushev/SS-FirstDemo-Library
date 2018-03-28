@@ -6,20 +6,39 @@ namespace Demo_Library.Models.BookModels
     {
         private const int TitleMaxLength = 35;
         private const int TitleMinLength = 1;
+        private const int ISBNexactLength = 13;
 
         private string title;
+        private long isbn;
 
-        protected Book(string title, Author author, int yearPublished, string bookType, BookGenre bookGenre)
+      
+        protected Book(long isbn, string bookType, BookGenre bookGenre, string title, Author author, int yearPublished)
         {
+            this.ISBN = isbn;
+            this.BookType = bookType;
+            this.BookGenre = bookGenre;
             this.Title = title;
             this.Author = author;
             this.YearPublished = yearPublished;
-            this.BookGenre = bookGenre;
-            this.BookType = bookType;
         }
 
-        public Author Author { get; private set; }
-        public int YearPublished { get; private set; }
+        public long ISBN
+        {
+            get { return isbn; }
+            private set
+            {
+                if (value.ToString().Length != ISBNexactLength)
+                {
+                    throw new ArgumentException(string.Format(OutputMessages.InvalidISBN, ISBNexactLength));
+                }
+                isbn = value;
+            }
+        }
+
+        public string BookType { get; private set; }
+
+        public BookGenre BookGenre { get; private set; }
+
         public string Title
         {
             get
@@ -35,12 +54,16 @@ namespace Demo_Library.Models.BookModels
                 title = value;
             }
         }
-        public string BookType { get; private set; }
-        public BookGenre BookGenre { get; private set; }
 
+        public Author Author { get; private set; }
+
+        public int YearPublished { get; private set; }
+     
+        
         public override string ToString()
         {
-            return $"Title: {this.Title}\r\n" +
+            return $"ISBN: {this.ISBN}\r\n" +
+                $"Title: {this.Title}\r\n" +
                 $"Published: {this.YearPublished}\r\n" +
                 $"Author: {this.Author.Name}, born: {this.Author.DateOfBirth:dd-mm-yyyy}\r\n" +
                 $"----------------------------------------";

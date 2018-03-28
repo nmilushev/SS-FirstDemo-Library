@@ -4,12 +4,12 @@ namespace Demo_Library.Models.BookModels
 {
     public class AudioBook : Book
     {
-        private const int MinDurationInMinutes = 10;
+        private const int MinDurationInMinutes = 5;
 
         private int durationInMinutes;
 
-        public AudioBook(string title, Author author, int yearPublished, int durationInMinutes, BookGenre bookGenre) 
-            : base(title, author, yearPublished, "Audio", bookGenre)
+        public AudioBook(long isbn, BookGenre bookGenre, string title, Author author, int yearPublished, int durationInMinutes)
+            : base(isbn, "Audio", bookGenre, title, author, yearPublished)
         {
             this.DurationInMinutes = durationInMinutes;
         }

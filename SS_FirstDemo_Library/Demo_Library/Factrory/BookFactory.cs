@@ -6,7 +6,7 @@ namespace Demo_Library.Factrory
 {
     public class BookFactory
     {
-        public Book CreateBook(string bookType, string bookGenre, string title, Author author, int yearPublished , int length)
+        public Book CreateBook(long isbn, string bookType, string bookGenre, string title, Author author, int yearPublished , int length)
         {
 
             bool validGenre = Enum.TryParse(bookGenre, out BookGenre objBookGenre);
@@ -20,9 +20,9 @@ namespace Demo_Library.Factrory
             switch (bookType)
             {
                 case "Audio":
-                    return new AudioBook(title, author, yearPublished, length, objBookGenre);
+                    return new AudioBook(isbn, objBookGenre, title, author, yearPublished, length);
                 case "Paper":
-                    return new PaperBook(title, author, yearPublished, length, objBookGenre);
+                    return new PaperBook(isbn, objBookGenre, title, author, yearPublished, length);
                 default:
                     throw new ArgumentException(string.Format(OutputMessages.InvalidTypeOfBook, bookType, "Audio", "Paper"));
             }
