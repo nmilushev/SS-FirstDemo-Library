@@ -98,7 +98,8 @@ namespace Demo_Library.BussinessLogic
         //printing books
         public void PrintBooks(string secondArgument)
         {
-            bool validBooksToPrint = int.TryParse(secondArgument, out int result);
+            int result;
+            bool validBooksToPrint = int.TryParse(secondArgument, out result);
 
             if (validBooksToPrint)
             {

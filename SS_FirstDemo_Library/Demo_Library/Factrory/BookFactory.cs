@@ -8,8 +8,8 @@ namespace Demo_Library.Factrory
     {
         public Book CreateBook(long isbn, string bookType, string bookGenre, string title, Author author, int yearPublished , int length)
         {
-
-            bool validGenre = Enum.TryParse(bookGenre, out BookGenre objBookGenre);
+            BookGenre objBookGenre;
+            bool validGenre = Enum.TryParse(bookGenre, out objBookGenre);
 
             if (!validGenre)
             {
