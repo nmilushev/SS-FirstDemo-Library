@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BussinessLogic\LibraryManagement.cs" />
+    <Compile Include="BussinessLogic\Algorithms.cs" />
     <Compile Include="Factrory\AuthorFactory.cs" />
     <Compile Include="Factrory\BookFactory.cs" />
     <Compile Include="Models\Author.cs" />

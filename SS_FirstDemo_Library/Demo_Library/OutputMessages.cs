@@ -22,23 +22,18 @@
                                                      "  print all\r\n" +
                                                      "  end\r\n" +
                                                      "****************************";
-        public static string BookInputFormat = "Add book in format:\r\n" +
-            "Type, Genre, Title, AuthorName, AuthorBirthdate (yyyy/mm/dd), YearPublished, Length";
         public static string BookAdded = "Book \"{0}\" was added!";
         public static string InvalidBookInput = "Invalid input!";
         public static string ChooseAlgorithm = "Choose algorithm:\r\n" +
-            " 1. Bubble sort / year published ascending\r\n" +
-            " 2. Bubble sort / year published descending\r\n" +
-            " 3. Bubble sort / author name ascending\r\n" +
-            " 4. Bubble sort / author name descending\r\n" +
-            " 5. Bubble sort / ISBN ascending\r\n" +
-            " 6. Bubble sort / ISBN descending\r\n" +
-            " 7. Merge sort / year published ascending\r\n" +
-            " 8. Merge sort / year published descending\r\n" +
-            " 9. Merge sort / ISBN ascending\r\n" +
-            " 10. Merge sort / ISBN descending";
-        //TO DO : add more functionality with rest sorting algorithms
+            " 1. Bubble sort / year published\r\n" +
+            " 2. Bubble sort / author name\r\n" +
+            " 3. Bubble sort / ISBN\r\n" +
+            " 4. Merge sort / year published\r\n" +
+            " 5. Merge sort / ISBN";
         public static string BooksSorted = "Sorting done! Time elapsed: {0}m {1}s {2}ms";
         public static string SearchDone = "Searching done! Time elapsed: {0}m {1}s {2}ms";
+        public static string ChooseOrder = "Ascending or Descending?";
+        public static string InputISBN = "Input 13 digit ISBN";
+        public static string BookRemoved = "Book removed!";
     }
 }
