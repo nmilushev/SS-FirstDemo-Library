@@ -102,7 +102,7 @@ namespace Demo_Library.BussinessLogic
             }
 
             return books;
-        }
+        } // remove
 
         public static IList<Book> SortAuthorNameBubble(IList<Book> books, string order)
         {
@@ -251,7 +251,7 @@ namespace Demo_Library.BussinessLogic
             rightPart = SortISBNMerge(rightPart, order);
             return SortISBNMergeHelper(leftPart, rightPart, order);
 
-        }
+        } // remove
         private static IList<Book> SortISBNMergeHelper(IList<Book> leftPart, IList<Book> rightPart, string order)
         {
             IList<Book> result = new List<Book>();
@@ -300,7 +300,7 @@ namespace Demo_Library.BussinessLogic
             }
 
             return result;
-        }
+        } // remove
 
         //Binary search on ISBN
         public static Book BinarySearchPerISBN(IList<Book> books, long isbnToSearch)
