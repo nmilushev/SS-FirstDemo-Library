@@ -10,7 +10,7 @@ namespace Demo_Library.Models.BookModels
 
         private string title;
         private long isbn;
-    
+
         protected Book(long isbn, string bookType, string bookGenre, string title, Author author, int yearPublished)
         {
             this.ISBN = isbn;
@@ -37,7 +37,7 @@ namespace Demo_Library.Models.BookModels
         public string BookType { get; }
 
         public BookGenre BookGenre { get; }
-       
+
         public string Title
         {
             get
@@ -57,7 +57,7 @@ namespace Demo_Library.Models.BookModels
         public Author Author { get; }
 
         public int YearPublished { get; }
-     
+
         public BookGenre ValidateBookGenre(string bookGenre)
         {
             BookGenre objBookGenre;
@@ -74,10 +74,10 @@ namespace Demo_Library.Models.BookModels
 
         public override string ToString()
         {
-            return $"ISBN: {this.ISBN}\r\n" +
-                $"Title: {this.Title}\r\n" +
-                $"Published: {this.YearPublished}\r\n" +
-                $"Author: {this.Author.Name}, born: {this.Author.DateOfBirth:dd-mm-yyyy}\r\n" +
+            return $"ISBN: {this.ISBN}, Type: {this.GetType().Name.ToString().Substring(0, 5)}" + Environment.NewLine +
+                $"Title: {this.Title}" + Environment.NewLine +
+               $"Published: {this.YearPublished}, Genre: {this.BookGenre}" + Environment.NewLine +
+                $"Author: {this.Author.Name}, born: {this.Author.DateOfBirth:dd-mm-yyyy}" + Environment.NewLine +
                 $"----------------------------------------";
         }
     }

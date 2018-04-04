@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Demo_Library.BussinessLogic
 {
@@ -322,12 +321,6 @@ namespace Demo_Library.BussinessLogic
         //Binary search on ISBN
         public static Book BinarySearchPerISBN(IList<Book> books, long isbnToSearch)
         {
-            Regex isbnPattern = new Regex(@"[0-9]{13}");
-            if (!isbnPattern.IsMatch(isbnToSearch.ToString()))
-            {
-                throw new ArgumentException(OutputMessages.InvalidBookInput);
-            }
-
             int left = 0;
             int right = books.Count - 1;
             

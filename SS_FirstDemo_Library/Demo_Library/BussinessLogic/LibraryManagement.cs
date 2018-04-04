@@ -8,6 +8,7 @@ using Demo_Library.Models;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Demo_Library.BussinessLogic
 {
@@ -59,13 +60,13 @@ namespace Demo_Library.BussinessLogic
 
             Author author = authorFactory.CreateAuthor(authorName, authorBday);
             Book book = bookFactory.CreateBook(isbn, bookType, bookGenre, title, author, yearPublished, length);
+
             return book;
         }
 
         //adding book to list, not manipulating the file
         private void AddBook()
         {
-            //show errors directly after input
             StringBuilder sb = new StringBuilder();
             Console.WriteLine(OutputMessages.InputISBN);
             sb.Append(Console.ReadLine() + ",");
@@ -99,6 +100,7 @@ namespace Demo_Library.BussinessLogic
             }
 
             this.booksManipulatable.Remove(bookToRemove);
+            Console.WriteLine(OutputMessages.BookRemoved);
         }
 
         //printing books
@@ -129,6 +131,15 @@ namespace Demo_Library.BussinessLogic
             }
         }
 
+        private void ValidateISBN(string isbnToSearch)
+        {
+            Regex isbnPattern = new Regex(@"[0-9]{13}");
+            if (!isbnPattern.IsMatch(isbnToSearch))
+            {
+                throw new ArgumentException(OutputMessages.InvalidBookInput);
+            }
+        }
+
         //Searching algorithm
         public IList<Book> ExecuteCommand(string input)
         {
@@ -149,7 +160,7 @@ namespace Demo_Library.BussinessLogic
                     if (chooseAlgorithm == 1)
                         this.booksManipulatable = (List<Book>)Algorithms.SortYearBubble(this.booksManipulatable, order);
                     else if (chooseAlgorithm == 2)
-                        this.booksManipulatable = (List<Book>)Algorithms.SortAuthorNameBubble(this.booksManipulatable, order);  
+                        this.booksManipulatable = (List<Book>)Algorithms.SortAuthorNameBubble(this.booksManipulatable, order);
                     else if (chooseAlgorithm == 3)
                     {
                         stopwatch.Start();
@@ -168,14 +179,13 @@ namespace Demo_Library.BussinessLogic
                     }
                     break;
                 case "search":
-                    stopwatch.Start();
                     this.booksManipulatable = (List<Book>)Algorithms.SortISBNMerge(this.booksManipulatable);
                     Console.WriteLine(OutputMessages.InputISBN);
-                    long isbnToSearch = long.Parse(Console.ReadLine());
+                    string isbnStr = Console.ReadLine();
+                    this.ValidateISBN(isbnStr);
+                    long isbnToSearch = long.Parse(isbnStr);
                     Book foundBook = Algorithms.BinarySearchPerISBN(this.booksManipulatable, isbnToSearch);
-                    stopwatch.Stop();
-                    TimeSpan timeSpanNotFound = stopwatch.Elapsed;
-                    Console.WriteLine(OutputMessages.SearchDone, timeSpanNotFound.Minutes, timeSpanNotFound.Seconds, timeSpanNotFound.Milliseconds);
+                    Console.WriteLine(OutputMessages.SearchDone);
                     Console.WriteLine((foundBook == null) ? OutputMessages.BookNotFound : foundBook.ToString());
                     break;
                 case "add":
@@ -183,12 +193,17 @@ namespace Demo_Library.BussinessLogic
                     break;
                 case "remove":
                     Console.WriteLine(OutputMessages.InputISBN);
-                    isbnToSearch = long.Parse(Console.ReadLine());
+                    isbnStr = Console.ReadLine();
+                    this.ValidateISBN(isbnStr);
+                    isbnToSearch = long.Parse(isbnStr);
                     this.RemoveBook(isbnToSearch);
-                    Console.WriteLine(OutputMessages.BookRemoved);
                     break;
                 case "print":
-                    string printArgument = inputArgs[1];
+                    string printArgument = String.Empty;
+                    if (inputArgs.Length < 2)
+                        printArgument = "all";
+                    else
+                        printArgument = inputArgs[1];
                     this.PrintBooks(printArgument);
                     break;
                 default:
