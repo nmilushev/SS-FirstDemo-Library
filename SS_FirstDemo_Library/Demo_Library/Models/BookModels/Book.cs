@@ -10,13 +10,12 @@ namespace Demo_Library.Models.BookModels
 
         private string title;
         private long isbn;
-
-      
-        protected Book(long isbn, string bookType, BookGenre bookGenre, string title, Author author, int yearPublished)
+    
+        protected Book(long isbn, string bookType, string bookGenre, string title, Author author, int yearPublished)
         {
             this.ISBN = isbn;
             this.BookType = bookType;
-            this.BookGenre = bookGenre;
+            this.BookGenre = this.ValidateBookGenre(bookGenre);
             this.Title = title;
             this.Author = author;
             this.YearPublished = yearPublished;
@@ -35,10 +34,10 @@ namespace Demo_Library.Models.BookModels
             }
         }
 
-        public string BookType { get; private set; }
+        public string BookType { get; }
 
-        public BookGenre BookGenre { get; private set; }
-
+        public BookGenre BookGenre { get; }
+       
         public string Title
         {
             get
@@ -55,11 +54,24 @@ namespace Demo_Library.Models.BookModels
             }
         }
 
-        public Author Author { get; private set; }
+        public Author Author { get; }
 
-        public int YearPublished { get; private set; }
+        public int YearPublished { get; }
      
-        
+        public BookGenre ValidateBookGenre(string bookGenre)
+        {
+            BookGenre objBookGenre;
+            bool validGenre = Enum.TryParse(bookGenre, out objBookGenre);
+
+            if (!validGenre)
+            {
+                throw new ArgumentException(string.Format(OutputMessages.InvalidGenreOfBook, bookGenre,
+                    BookGenre.Drama.ToString(), BookGenre.Horror.ToString(), BookGenre.Romance.ToString()));
+            }
+
+            return objBookGenre;
+        }
+
         public override string ToString()
         {
             return $"ISBN: {this.ISBN}\r\n" +

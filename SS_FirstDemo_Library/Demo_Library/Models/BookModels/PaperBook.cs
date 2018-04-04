@@ -8,7 +8,7 @@ namespace Demo_Library.Models.BookModels
 
         private int numberOfPages;
 
-        public PaperBook(long isbn, BookGenre bookGenre, string title, Author author, int yearPublished, int numberOfPages) 
+        public PaperBook(long isbn, string bookGenre, string title, Author author, int yearPublished, int numberOfPages) 
             : base(isbn, "Paper", bookGenre, title, author, yearPublished)
         {
             this.NumberOfPages = numberOfPages;

@@ -28,7 +28,7 @@ namespace Demo_Library.BussinessLogic
         public IReadOnlyCollection<Book> Books => (IReadOnlyCollection<Book>)this.booksManipulatable;
 
         //loading books from data.csv file
-        public List<Book> LoadBooks()
+        private List<Book> LoadBooks()
         {
             BookFactory bookFactory = new BookFactory();
             AuthorFactory authorFactory = new AuthorFactory();
@@ -63,11 +63,11 @@ namespace Demo_Library.BussinessLogic
         }
 
         //adding book to list, not manipulating the file
-        public void AddBook()
+        private void AddBook()
         {
             //show errors directly after input
             StringBuilder sb = new StringBuilder();
-            Console.WriteLine("13 digit ISBN:");
+            Console.WriteLine(OutputMessages.InputISBN);
             sb.Append(Console.ReadLine() + ",");
             Console.WriteLine("Book type:");
             sb.Append(Console.ReadLine() + ",");
@@ -89,14 +89,20 @@ namespace Demo_Library.BussinessLogic
             Console.WriteLine(string.Format(OutputMessages.BookAdded, bookToAdd.Title));
         }
 
-        public void RemoveBook(long isbn)
+        private void RemoveBook(long isbn)
         {
-            Book bookToRemove = this.booksManipulatable.Single(b => b.ISBN == isbn);
+            Book bookToRemove = this.booksManipulatable.SingleOrDefault(b => b.ISBN == isbn);
+
+            if (bookToRemove == null)
+            {
+                throw new ArgumentException(OutputMessages.BookNotFound);
+            }
+
             this.booksManipulatable.Remove(bookToRemove);
         }
 
         //printing books
-        public void PrintBooks(string secondArgument)
+        private void PrintBooks(string secondArgument)
         {
             int result;
             bool validBooksToPrint = int.TryParse(secondArgument, out result);
@@ -143,10 +149,8 @@ namespace Demo_Library.BussinessLogic
                     if (chooseAlgorithm == 1)
                         this.booksManipulatable = (List<Book>)Algorithms.SortYearBubble(this.booksManipulatable, order);
                     else if (chooseAlgorithm == 2)
-                        this.booksManipulatable = (List<Book>)Algorithms.SortAuthorNameBubble(this.booksManipulatable, order);
+                        this.booksManipulatable = (List<Book>)Algorithms.SortAuthorNameBubble(this.booksManipulatable, order);  
                     else if (chooseAlgorithm == 3)
-                        this.booksManipulatable = (List<Book>)Algorithms.SortISBNBubble(this.booksManipulatable, order);
-                    else if (chooseAlgorithm == 4)
                     {
                         stopwatch.Start();
                         this.booksManipulatable = (List<Book>)Algorithms.SortYearMerge(this.booksManipulatable, order);
@@ -154,21 +158,25 @@ namespace Demo_Library.BussinessLogic
                         TimeSpan ts = stopwatch.Elapsed;
                         Console.WriteLine(OutputMessages.BooksSorted, ts.Minutes, ts.Seconds, ts.Milliseconds);
                     }
-                    else if (chooseAlgorithm == 5)
+                    else if (chooseAlgorithm == 4)
                     {
                         stopwatch.Start();
-                        this.booksManipulatable = (List<Book>)Algorithms.SortISBNMerge(this.booksManipulatable, order);
+                        this.booksManipulatable = (List<Book>)Algorithms.SortAuthorMerge(this.booksManipulatable, order);
                         stopwatch.Stop();
                         TimeSpan ts = stopwatch.Elapsed;
                         Console.WriteLine(OutputMessages.BooksSorted, ts.Minutes, ts.Seconds, ts.Milliseconds);
                     }
                     break;
                 case "search":
-                    this.booksManipulatable = (List<Book>)Algorithms.SortISBNMerge(this.booksManipulatable, "ascending");
+                    stopwatch.Start();
+                    this.booksManipulatable = (List<Book>)Algorithms.SortISBNMerge(this.booksManipulatable);
                     Console.WriteLine(OutputMessages.InputISBN);
                     long isbnToSearch = long.Parse(Console.ReadLine());
                     Book foundBook = Algorithms.BinarySearchPerISBN(this.booksManipulatable, isbnToSearch);
-                    Console.WriteLine((foundBook == null) ? "Book not found!" : foundBook.ToString());
+                    stopwatch.Stop();
+                    TimeSpan timeSpanNotFound = stopwatch.Elapsed;
+                    Console.WriteLine(OutputMessages.SearchDone, timeSpanNotFound.Minutes, timeSpanNotFound.Seconds, timeSpanNotFound.Milliseconds);
+                    Console.WriteLine((foundBook == null) ? OutputMessages.BookNotFound : foundBook.ToString());
                     break;
                 case "add":
                     this.AddBook();

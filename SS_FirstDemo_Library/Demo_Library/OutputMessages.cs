@@ -29,13 +29,13 @@ namespace Demo_Library
         public static string ChooseAlgorithm = "Choose algorithm:" + Environment.NewLine +
             " 1. Bubble sort / year published" + Environment.NewLine +
             " 2. Bubble sort / author name" + Environment.NewLine +
-            " 3. Bubble sort / ISBN" + Environment.NewLine +
-            " 4. Merge sort / year published" + Environment.NewLine +
-            " 5. Merge sort / ISBN";
+            " 3. Merge sort / year published" + Environment.NewLine +
+            " 4. Merge sort / author name";
         public static string BooksSorted = "Sorting done! Time elapsed: {0}m {1}s {2}ms";
         public static string SearchDone = "Searching done! Time elapsed: {0}m {1}s {2}ms";
         public static string ChooseOrder = "Ascending or Descending?";
-        public static string InputISBN = "Input 13 digit ISBN";
+        public static string InputISBN = "Input 13-digit ISBN:";
         public static string BookRemoved = "Book removed!";
+        public static string BookNotFound = "Book not found!";
     }
 }

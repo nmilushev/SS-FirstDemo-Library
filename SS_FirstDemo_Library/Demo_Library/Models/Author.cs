@@ -30,6 +30,6 @@ namespace Demo_Library.Models
                 name = value;
             }
         }
-        public DateTime DateOfBirth { get; private set; }
+        public DateTime DateOfBirth { get; }
     }
 }

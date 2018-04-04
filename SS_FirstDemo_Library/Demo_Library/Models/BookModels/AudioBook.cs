@@ -8,7 +8,7 @@ namespace Demo_Library.Models.BookModels
 
         private int durationInMinutes;
 
-        public AudioBook(long isbn, BookGenre bookGenre, string title, Author author, int yearPublished, int durationInMinutes)
+        public AudioBook(long isbn, string bookGenre, string title, Author author, int yearPublished, int durationInMinutes)
             : base(isbn, "Audio", bookGenre, title, author, yearPublished)
         {
             this.DurationInMinutes = durationInMinutes;
